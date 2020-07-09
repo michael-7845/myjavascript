@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<h2>query练习</h2>
+<!-- HTML结构 -->
+<div class="testing">
+    <ul class="lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+</div>
+
+<script>
+var sel; 
+sel = $('ul.lang li.lang-javascript'); // [<li class="lang-javascript">JavaScript</li>]
+console.log(sel.text());
+
+sel = $('div.testing li.lang-javascript'); // [<li class="lang-javascript">JavaScript</li>]
+console.log(sel.text());
+
+sel = $('ul.lang li');
+console.log(sel.text());
+
+sel = $('ul.lang>li.lang-javascript'); // 可以选出[<li class="lang-javascript">JavaScript</li>]
+console.log(sel.text());
+
+sel = $('div.testing>li.lang-javascript'); // [], 无法选出，因为<div>和<li>不构成父子关系
+console.log(sel.text());
+
+sel = $('ul.lang li'); // 选出JavaScript、Python和Lua 3个节点
+console.log(sel.text());
+
+sel = $('ul.lang li:first-child'); // 仅选出JavaScript
+console.log(sel.text());
+
+sel = $('ul.lang li:last-child'); // 仅选出Lua
+console.log(sel.text());
+
+sel = $('ul.lang li:nth-child(2)'); // 选出第N个元素，N从1开始
+console.log(sel.text());
+
+sel = $('ul.lang li:nth-child(even)'); // 选出序号为偶数的元素
+console.log(sel.text());
+
+sel = $('ul.lang li:nth-child(odd)'); // 选出序号为奇数的元素
+console.log(sel.text());
+</script>
+
+<div class="test-selector">
+    <ul class="test-lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+    <ol class="test-lang">
+        <li class="lang-swift">Swift</li>
+        <li class="lang-java">Java</li>
+        <li class="lang-c">C</li>
+    </ol>
+</div>
+
+<script>
+var sel; 
+sel = $('ul li');
+console.log(sel.text());
+sel = $('ol li');
+console.log(sel.text());
+sel = $('ul>.lang-javascript');
+console.log(sel.text());
+sel = $('.lang-lua');
+console.log(sel.text());
+sel = $('ol li:last-child');
+console.log(sel.text());
+</script>
+
+</body>
+</html>

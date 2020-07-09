@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<h2>query练习</h2>
+<!-- HTML结构 -->
+<ul class="lang">
+    <li class="js dy">JavaScript</li>
+    <li class="dy">Python</li>
+    <li id="swift">Swift</li>
+    <li class="dy">Scheme</li>
+    <li name="haskell">Haskell</li>
+</ul>
+
+<script>
+// 用find()查找：
+var ul = $('ul.lang'); // 获得<ul>
+var dy = ul.find('.dy'); // 获得JavaScript, Python, Scheme
+var swf = ul.find('#swift'); // 获得Swift
+var hsk = ul.find('[name=haskell]'); // 获得Haskell
+console.log(dy.text(), swf.text(), hsk.text());
+
+// 如果要从当前节点开始向上查找，使用parent()方法：
+var swf = $('#swift'); // 获得Swift
+var parent = swf.parent(); // 获得Swift的上层节点<ul>
+var a = swf.parent('.red'); // 获得Swift的上层节点<ul>，同时传入过滤条件。如果ul不符合条件，返回空jQuery对象
+console.log(parent.text(), a.text());
+
+var swift = $('#swift');
+console.log(swift.next().text()); // Scheme
+console.log(swift.next('[name=haskell]').text()); // 空的jQuery对象，因为Swift的下一个元素Scheme不符合条件[name=haskell]
+console.log(swift.prev().text()); // Python
+console.log(swift.prev('.dy').text()); // Python，因为Python同时符合过滤器条件.dy
+
+// filter()方法可以过滤掉不符合选择器条件的节点：
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var a = langs.filter('.dy'); // 拿到JavaScript, Python, Scheme
+console.log(a.text());
+
+// 或者传入一个函数，要特别注意函数内部的this被绑定为DOM对象，不是jQuery对象：
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var s = langs.filter(function () {
+    return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
+}); // 拿到Swift, Scheme
+console.log(s.text());
+
+// map()方法把一个jQuery对象包含的若干DOM节点转化为其他对象：
+var arr = langs.map(function () {
+    return this.innerHTML;
+}).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
+console.log(arr);
+
+// 此外，一个jQuery对象如果包含了不止一个DOM节点，first()、last()和slice()方法可以返回一个新的jQuery对象，把不需要的DOM节点去掉：
+var js = langs.first(); // JavaScript，相当于$('ul.lang li:first-child')
+var haskell = langs.last(); // Haskell, 相当于$('ul.lang li:last-child')
+var sub = langs.slice(2, 4); // Swift, Scheme, 参数和数组的slice()方法一致
+console.log(js.text(), haskell.text(), sub.text());
+</script>
+
+</body>
+</html>

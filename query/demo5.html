@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<h2>query练习</h2>
+<!-- HTML结构 -->
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>
+
+<script>
+var a = $('li.js');
+// a.hide(); // 隐藏
+a.show(); // 显示
+
+// 浏览器可视窗口大小:
+console.log($(window).width()); // 800
+console.log($(window).height()); // 600
+
+// HTML文档大小:
+console.log($(document).width()); // 800
+console.log($(document).height()); // 3500
+
+// 某个div的大小:
+var div = $('#test-div');
+console.log(div.width()); // 600
+console.log(div.height()); // 300
+console.log(div.width(400)); // 设置CSS属性 width: 400px，是否生效要看CSS是否有效
+console.log(div.height('200px')); // 设置CSS属性 height: 200px，是否生效要看CSS是否有效
+</script>
+
+<div id="test-div" name="Test" start="1">...</div>
+<input id="test-radio" type="radio" name="test" checked value="1">
+
+<script>
+var div = $('#test-div');
+console.log(div.attr('data')); // undefined, 属性不存在
+console.log(div.attr('name')); // 'Test'
+console.log(div.attr('name', 'Hello')); // div的name属性变为'Hello'
+console.log(div.removeAttr('name')); // 删除name属性
+console.log(div.attr('name')); // undefined
+
+var radio = $('#test-radio');
+console.log(radio.attr('checked')); // 'checked'
+console.log(radio.prop('checked')); // true
+</script>
+
+<input id="test-input" name="email" value="test">
+    <select id="test-select" name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="SZ">Shenzhen</option>
+    </select>
+    <textarea id="test-textarea">Hello</textarea>
+</input>
+
+<script>
+var
+    input = $('#test-input'),
+    select = $('#test-select'),
+    textarea = $('#test-textarea');
+
+console.log(input.val()); // 'test'
+input.val('abc@example.com'); // 文本框的内容已变为abc@example.com
+
+console.log(select.val()); // 'BJ'
+select.val('SH'); // 选择框已变为Shanghai
+
+console.log(textarea.val()); // 'Hello'
+textarea.val('Hi'); // 文本区域已更新为'Hi'
+</script>
+
+</body>
+</html>

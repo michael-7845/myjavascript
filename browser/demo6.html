@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Body 中的 JavaScript</h2>
+
+<p id="demo"></p>
+
+<dl id="drink-menu" style="border:solid 1px #ccc;padding:6px;">
+    <dt>摩卡</dt>
+    <dd>热摩卡咖啡</dd>
+    <dt>酸奶</dt>
+    <dd>北京老酸奶</dd>
+    <dt>果汁</dt>
+    <dd>鲜榨苹果汁</dd>
+</dl>
+
+<p id="p-id">...</p>
+
+<p id="js">JavaScript</p>
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+
+<script>
+var p = document.getElementById('p-id');
+// 设置文本为abc:
+p.innerHTML = 'ABC'; // <p id="p-id">ABC</p>
+// 设置HTML:
+p.innerHTML = 'ABC <span style="color:red">RED</span> XYZ';
+// <p>...</p>的内部结构已修改
+
+// 设置文本:
+// p.innerText = '<script>alert("Hi")<\/script>';
+// HTML被自动编码，无法设置一个<script>节点:
+// <p id="p-id">&lt;script&gt;alert("Hi")&lt;/script&gt;</p>
+
+var js = document.getElementById('js'),
+    list = document.getElementById('list');
+list.appendChild(js);
+
+// var
+//     list = document.getElementById('list'),
+//     haskell = document.createElement('p');
+// haskell.id = 'haskell';
+// haskell.innerText = 'Haskell';
+// list.appendChild(haskell);
+
+var
+    list = document.getElementById('list'),
+    ref = document.getElementById('python'),
+    haskell = document.createElement('p');
+haskell.id = 'haskell';
+haskell.innerText = 'Haskell';
+list.insertBefore(haskell, ref);
+
+var
+    i, c,
+    list = document.getElementById('list');
+for(i = 0; i < list.children.length; i++) {
+    c = list.children[i]; // 拿到第i个子节点
+    console.log(c);
+}
+
+// 拿到待删除节点:
+var self = document.getElementById('js');
+// 拿到父节点:
+var parent = self.parentElement;
+// 删除:
+var removed = parent.removeChild(self);
+removed === self; // true
+
+</script>
+
+</body>
+</html>

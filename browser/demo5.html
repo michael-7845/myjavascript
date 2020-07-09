@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Body 中的 JavaScript</h2>
+
+<p id="demo"></p>
+
+<dl id="drink-menu" style="border:solid 1px #ccc;padding:6px;">
+    <dt>摩卡</dt>
+    <dd>热摩卡咖啡</dd>
+    <dt>酸奶</dt>
+    <dd>北京老酸奶</dd>
+    <dt>果汁</dt>
+    <dd>鲜榨苹果汁</dd>
+</dl>
+
+<script>
+document.getElementById("demo").innerHTML = "我的第一段 JavaScript";
+// 可以调整浏览器窗口大小试试:
+console.log('window inner size: ' + window.innerWidth + ' x ' + window.innerHeight);
+console.log('window outer size: ' + window.outerWidth + ' x ' + window.outerHeight);
+
+console.log('appName = ' + navigator.appName);
+console.log('appVersion = ' + navigator.appVersion);
+console.log('language = ' + navigator.language);
+console.log('platform = ' + navigator.platform);
+console.log('userAgent = ' + navigator.userAgent);
+
+var width = window.innerWidth || document.body.clientWidth;
+console.log('width: ' + width); 
+
+console.log('Screen size = ' + screen.width + ' x ' + screen.height);
+console.log('Screen color depth = ' + screen.colorDepth);
+
+console.log(location.protocol); // 'http'
+console.log(location.host); // 'www.example.com'
+console.log(location.port); // '8080'
+console.log(location.pathname); // '/path/index.html'
+console.log(location.search); // '?a=1&b=2'
+console.log(location.hash); // 'TOP'
+
+document.title = 'learn JavaScript in the hard way!';
+
+var menu = document.getElementById('drink-menu');
+var drinks = document.getElementsByTagName('dt');
+var i, s;
+
+s = 'drinks:';
+for (i=0; i<drinks.length; i++) {
+    s = s + drinks[i].innerHTML + ',';
+}
+console.log(s);
+
+console.log(document.cookie);
+// console.log(history);
+// history.back();
+</script>
+
+</body>
+</html>

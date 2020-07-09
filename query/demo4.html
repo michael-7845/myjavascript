@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<h2>query练习</h2>
+<!-- HTML结构 -->
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>
+
+<script>
+var text = $('#test-ul li[name=book]').text(); // 'Java & JavaScript'
+var html = $('#test-ul li[name=book]').html(); // 'Java &amp; JavaScript'
+
+var j1 = $('#test-ul li.js');
+var j2 = $('#test-ul li[name=book]');
+j1.html('<span style="color: red">JavaScript</span>');
+j2.text('JavaScript & ECMAScript');
+
+// $('#test-ul li').text('JS'); // 是不是两个节点都变成了JS？
+// $('#not-exist').text('Hello'); // 代码不报错，没有节点被设置为'Hello'
+</script>
+
+<!-- HTML结构 -->
+<ul id="test-css">
+    <li class="lang dy"><span>JavaScript</span></li>
+    <li class="lang"><span>Java</span></li>
+    <li class="lang dy"><span>Python</span></li>
+    <li class="lang"><span>Swift</span></li>
+    <li class="lang dy"><span>Scheme</span></li>
+</ul>
+
+<script>
+$('#test-css li.dy>span').css('background-color', '#ffd351').css('color', 'red');
+
+var div = $('#test-css>li.lang.dy');
+div.css('color'); // '#000033', 获取CSS属性
+div.css('color', '#336699'); // 设置CSS属性
+div.css('color', ''); // 清除CSS属性
+
+var div = $('#test-css>li.lang.dy');
+div.hasClass('highlight'); // false， class是否包含highlight
+div.addClass('highlight'); // 添加highlight这个class
+div.removeClass('highlight'); // 删除highlight这个class
+</script>
+
+<style>
+.highlight {
+    color: #dd1144;
+    background-color: #ffd351;
+}
+</style>
+
+<div id="test-highlight-css">
+    <ul>
+        <li class="py"><span>Python</span></li>
+        <li class="js"><span>JavaScript</span></li>
+        <li class="sw"><span>Swift</span></li>
+        <li class="hk"><span>Haskell</span></li>
+    </ul>
+</div>
+
+<script>
+var div1 = $('#test-highlight-css li.js');
+var div2 = $('#test-highlight-css li.py');
+div1.css('color', '#dd1144').css('background-color', '#ffd351'); 
+div2.addClass('highlight');
+</script>
+
+</body>
+</html>

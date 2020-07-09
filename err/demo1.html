@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<h2>query事件处理</h2>
+<!-- HTML结构 -->
+<form>
+    <input id="x"> + <input id="y">
+    <button id="calc" type="button">计算</button>
+</form>
+
+<script>
+	var $btn = $('#calc');
+
+	// 取消已绑定的事件:
+	$btn.off('click');
+
+	try {
+    $btn.click(function () {
+            var
+                x = parseFloat($('#x').val()),
+                y = parseFloat($('#y').val()),
+                r;
+            if (isNaN(x) || isNaN(y)) {
+                throw new Error('wrong input');
+            }
+            r = x + y;
+            alert('result: ' + r);
+        });
+    } catch (e) {
+        alert('wrong input!');
+    }
+
+    $btn.click(function () {
+    	try {
+    		var
+                x = parseFloat($('#x').val()),
+                y = parseFloat($('#y').val()),
+                r;
+            if (isNaN(x) || isNaN(y)) {
+                throw new Error('wrong input');
+            }
+            r = x + y;
+            alert('result: ' + r);
+    	} catch(e) {
+    		console.log(e);
+    	}
+    });
+</script>
+
+</body>
+</html>
